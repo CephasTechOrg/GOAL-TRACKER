@@ -48,4 +48,4 @@ Whether you’re tracking personal habits, study milestones, or work projects, G
 ### 🔧 For Web (Local)
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/goal-tracker.git
+
