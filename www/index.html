@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dream Tracker - Achieve Your Goals</title>
+    <link rel="stylesheet" href="css/all.min.css">
+
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <button class="mobile-nav-toggle" id="mobile-nav-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <h1>Dream Tracker</h1>
+            <p>Turn your dreams into reality, one step at a time</p>
+            <div class="deadline">
+                <i class="far fa-calendar-alt"></i> <span id="current-date">Current Date</span>
+            </div>
+            <button class="mobile-back-btn" id="mobile-back-btn">
+                <i class="fas fa-times"></i>
+            </button>
+        </header>
+
+        <div class="content">
+            <div class="sidebar" id="sidebar">
+                <div class="stats">
+                    <h3>Progress Overview</h3>
+                    <div class="stat-item">
+                        <span>Total Goals:</span>
+                        <span id="total-tasks">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span>Completed:</span>
+                        <span id="completed-tasks">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span>Remaining:</span>
+                        <span id="remaining-tasks">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span>Completion:</span>
+                        <span id="completion-percentage">0%</span>
+                    </div>
+                    <div class="streak-counter">
+                        <i class="fas fa-fire"></i>
+                        <span>Current Streak: <span class="streak-days" id="current-streak">0</span> days</span>
+                    </div>
+                </div>
+
+                <div class="categories">
+                    <h3>Categories</h3>
+                    <div class="category active" data-category="all">
+                        <i class="fas fa-tasks" style="color: #4b6cb7;"></i>
+                        <span>All Goals</span>
+                    </div>
+                    <div class="category" data-category="career">
+                        <i class="fas fa-briefcase" style="color: #3498db;"></i>
+                        <span>Career Development</span>
+                    </div>
+                    <div class="category" data-category="learning">
+                        <i class="fas fa-graduation-cap" style="color: #2ecc71;"></i>
+                        <span>Learning</span>
+                    </div>
+                    <div class="category" data-category="project">
+                        <i class="fas fa-code-branch" style="color: #e74c3c;"></i>
+                        <span>Projects</span>
+                    </div>
+                    <div class="category" data-category="practice">
+                        <i class="fas fa-code" style="color: #f39c12;"></i>
+                        <span>Daily Practice</span>
+                    </div>
+                </div>
+
+                <div class="motivational-quote">
+                    <p id="quote-text">"The future depends on what you do today."</p>
+                    <p id="quote-author">- Mahatma Gandhi</p>
+                </div>
+            </div>
+
+            <div class="main-content">
+                <!-- Mobile Category Selector -->
+                <select class="mobile-category-selector" id="mobile-category-selector">
+                    <option value="all">All Goals</option>
+                    <option value="career">Career Development</option>
+                    <option value="learning">Learning</option>
+                    <option value="project">Projects</option>
+                    <option value="practice">Daily Practice</option>
+                </select>
+
+                <!-- Desktop Tabs -->
+                <div class="tabs">
+                    <div class="tab active" data-tab="dashboard">Dashboard</div>
+                    <div class="tab" data-tab="goals">My Goals</div>
+                    <div class="tab" data-tab="add">Add New Goal</div>
+                </div>
+
+                <!-- Dashboard Tab -->
+                <div class="tab-content active" id="dashboard-tab">
+                    <div class="dashboard-grid">
+                        <div class="dashboard-card">
+                            <i class="fas fa-trophy"></i>
+                            <h3>Goals Completed</h3>
+                            <div class="value" id="dashboard-completed">0</div>
+                            <div class="label">This Month</div>
+                        </div>
+                        <div class="dashboard-card">
+                            <i class="fas fa-bullseye"></i>
+                            <h3>Active Goals</h3>
+                            <div class="value" id="dashboard-active">0</div>
+                            <div class="label">Need Your Attention</div>
+                        </div>
+                        <div class="dashboard-card">
+                            <i class="fas fa-fire"></i>
+                            <h3>Current Streak</h3>
+                            <div class="value" id="dashboard-streak">0</div>
+                            <div class="label">Days in a Row</div>
+                        </div>
+                        <div class="dashboard-card">
+                            <i class="fas fa-chart-line"></i>
+                            <h3>Productivity</h3>
+                            <div class="value" id="dashboard-productivity">0%</div>
+                            <div class="label">Based on Completion</div>
+                        </div>
+                    </div>
+
+                    <div class="tasks-container">
+                        <div class="tasks-header">
+                            <h2>Upcoming Deadlines</h2>
+                        </div>
+
+                        <div class="tasks" id="upcoming-tasks">
+                            <!-- Upcoming tasks will be dynamically added here -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Goals Tab -->
+                <div class="tab-content" id="goals-tab">
+                    <div class="tasks-container">
+                        <div class="tasks-header">
+                            <h2>Your Goals</h2>
+                            <div class="filter-options">
+                                <button class="filter-btn active" data-filter="all">All</button>
+                                <button class="filter-btn" data-filter="active">Active</button>
+                                <button class="filter-btn" data-filter="completed">Completed</button>
+                            </div>
+                        </div>
+
+                        <div class="tasks" id="tasks-list">
+                            <!-- Tasks will be dynamically added here -->
+                        </div>
+
+                        <div class="progress-bar">
+                            <div class="progress" id="progress-bar"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Add Goal Tab -->
+                <div class="tab-content" id="add-tab">
+                    <div class="task-input-panel">
+                        <h3><i class="fas fa-plus-circle"></i> Add New Goal</h3>
+                        <div class="input-group">
+                            <input type="text" id="new-task-title" placeholder="Goal title...">
+                            <select id="new-task-category">
+                                <option value="career">Career Development</option>
+                                <option value="learning">Learning</option>
+                                <option value="project">Projects</option>
+                                <option value="practice">Daily Practice</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <textarea id="new-task-desc" placeholder="Description..."></textarea>
+                        </div>
+                        <div class="input-group">
+                            <input type="date" id="new-task-deadline">
+                            <select id="new-task-priority">
+                                <option value="low">Low Priority</option>
+                                <option value="medium" selected>Medium Priority</option>
+                                <option value="high">High Priority</option>
+                            </select>
+                        </div>
+                        <div class="task-input">
+                            <button id="add-task-btn">Add Goal</button>
+                        </div>
+                    </div>
+
+                    <div class="motivational-quote" style="background: #f5f7fa; color: #333;">
+                        <p>"Setting goals is the first step in turning the invisible into the visible."</p>
+                        <p>- Tony Robbins</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Bottom Navigation -->
+    <div class="mobile-bottom-nav" id="mobile-bottom-nav">
+        <div class="mobile-nav-item active" data-tab="dashboard">
+            <i class="fas fa-home"></i>
+            <span>Dashboard</span>
+        </div>
+        <div class="mobile-nav-item" data-tab="goals">
+            <i class="fas fa-bullseye"></i>
+            <span>Goals</span>
+        </div>
+        <div class="mobile-nav-item" data-tab="add">
+            <i class="fas fa-plus-circle"></i>
+            <span>Add Goal</span>
+        </div>
+    </div>
+
+    <div class="notification" id="notification">
+        Goal saved successfully!
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
