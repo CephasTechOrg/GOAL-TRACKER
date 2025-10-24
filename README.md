@@ -43,6 +43,6 @@ Whether you’re tracking personal habits, study milestones, or work projects, G
 
 ---
 
-## 📱 Installation & Setup
+
 
 
